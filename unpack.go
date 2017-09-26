@@ -6,14 +6,21 @@ import (
 	"strings"
 )
 
+// Unpack Unpack space septated short abbreviated hosts into full hosts list.
+func UnpackString(packedHosts string) (hosts []string) {
+	return Unpack([]string{packedHosts})
+}
+
 // Unpack Unpack short abbreviated hosts into full hosts list.
 func Unpack(packedHosts []string) (hosts []string) {
 	if packedHosts == nil {
 		return nil
 	}
+
+	regHosts := regularizeHosts(packedHosts)
 	resultSet := make(map[string]bool)
 
-	for _, packedHost := range packedHosts {
+	for _, packedHost := range regHosts {
 		unpackHosts(packedHost, resultSet)
 	}
 

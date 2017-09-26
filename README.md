@@ -1,6 +1,7 @@
 # hostutils
 
 [![Build Status](https://travis-ci.org/Wing924/hostutils.svg?branch=addStrfunc)](https://travis-ci.org/Wing924/hostutils)
+[![Go Report Card](https://goreportcard.com/badge/github.com/Wing924/hostutils)](https://goreportcard.com/report/github.com/Wing924/hostutils)
 
 A golang library for packing and unpacking hosts list
 

@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-var reComent = regexp.MustCompile(`#.*$`)
+var reComent = regexp.MustCompile(`#.*`)
 var reSpaces = regexp.MustCompile(`\s+`)
 var reHostname = regexp.MustCompile(`^(.*?)(\d+)(\D*)$`)
 var reIsNumber = regexp.MustCompile(`^\d+$`)
@@ -42,7 +42,6 @@ func regularizeHosts(hosts []string) []string {
 				uniqHosts[h] = true
 			}
 		}
-
 	}
 	result := make([]string, len(uniqHosts))
 	var i = 0

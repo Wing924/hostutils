@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-// Unpack Unpack space septated short abbreviated hosts into full hosts list.
+// UnpackString Unpack space septated short abbreviated hosts into full hosts list.
 func UnpackString(packedHosts string) (hosts []string) {
 	return Unpack([]string{packedHosts})
 }

@@ -47,10 +47,6 @@ func packHosts(uniqHosts []string) []string {
 }
 
 func groupNums(nums []string) string {
-	if len(nums) == 0 {
-		return ""
-	}
-
 	sort.Slice(nums, func(i, j int) bool {
 		if len(nums[i]) != len(nums[j]) {
 			return len(nums[i]) < len(nums[j])

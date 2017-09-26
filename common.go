@@ -16,10 +16,7 @@ var reCondSpace = regexp.MustCompile(`,\s*`)
 var reCondBlk = regexp.MustCompile(`^(\d+)([-:](\d+))?$`)
 
 func atoi(s string) int {
-	i, err := strconv.Atoi(s)
-	if err != nil {
-		return 0
-	}
+	i, _ := strconv.Atoi(s)
 	return i
 }
 

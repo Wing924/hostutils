@@ -13,10 +13,10 @@ func PackString(hosts string) (packedHosts []string) {
 
 // Pack Pack full hosts list into short abbreviated hosts.
 func Pack(hosts []string) (packedHosts []string) {
-	if hosts == nil {
+	regHosts := regularizeHosts(hosts[:])
+	if regHosts == nil {
 		return nil
 	}
-	regHosts := regularizeHosts(hosts[:])
 	if len(regHosts) == 0 {
 		return []string{}
 	}

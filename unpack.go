@@ -3,7 +3,6 @@ package hostutils
 import (
 	"fmt"
 	"sort"
-	"strings"
 )
 
 // UnpackString Unpack space septated short abbreviated hosts into full hosts list.
@@ -13,11 +12,10 @@ func UnpackString(packedHosts string) (hosts []string) {
 
 // Unpack Unpack short abbreviated hosts into full hosts list.
 func Unpack(packedHosts []string) (hosts []string) {
-	if packedHosts == nil {
+	regHosts := regularizeHosts(packedHosts)
+	if regHosts == nil {
 		return nil
 	}
-
-	regHosts := regularizeHosts(packedHosts)
 	resultSet := make(map[string]bool)
 
 	for _, packedHost := range regHosts {
@@ -35,11 +33,6 @@ func Unpack(packedHosts []string) (hosts []string) {
 }
 
 func unpackHosts(packedHost string, resultSet map[string]bool) {
-	packedHost = strings.TrimSpace(reComent.ReplaceAllString(packedHost, ""))
-	if packedHost == "" {
-		return
-	}
-
 	m := rePackedHost.FindStringSubmatch(packedHost)
 	if m != nil {
 		prefix := m[1]
@@ -55,10 +48,6 @@ func unpackHosts(packedHost string, resultSet map[string]bool) {
 }
 
 func unpackCond(cond string) []string {
-	if !reCond.MatchString(cond) {
-		return []string{cond}
-	}
-
 	var result []string
 
 	for _, blk := range reCondSpace.Split(cond, -1) {
@@ -77,8 +66,6 @@ func unpackCond(cond string) []string {
 					result = append(result, fmt.Sprintf("%0*d", len, i))
 				}
 			}
-		} else {
-			result = append(result, blk)
 		}
 	}
 	return result

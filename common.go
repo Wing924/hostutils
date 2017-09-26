@@ -29,3 +29,26 @@ func maxi(a int, b int) int {
 	}
 	return b
 }
+
+func regularizeHosts(hosts []string) []string {
+	if hosts == nil {
+		return nil
+	}
+	uniqHosts := make(map[string]bool)
+	for _, host := range hosts {
+		noCmtHosts := reComent.ReplaceAllString(host, "")
+		for _, h := range reSpaces.Split(noCmtHosts, -1) {
+			if h != "" {
+				uniqHosts[h] = true
+			}
+		}
+
+	}
+	result := make([]string, len(uniqHosts))
+	var i = 0
+	for host := range uniqHosts {
+		result[i] = host
+		i++
+	}
+	return result
+}

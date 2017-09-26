@@ -6,6 +6,11 @@ import (
 	"strings"
 )
 
+// PackString Pack space septated full hosts list into short abbreviated hosts.
+func PackString(hosts string) (packedHosts []string) {
+	return Pack([]string{hosts})
+}
+
 // Pack Pack full hosts list into short abbreviated hosts.
 func Pack(hosts []string) (packedHosts []string) {
 	if hosts == nil {
@@ -16,29 +21,6 @@ func Pack(hosts []string) (packedHosts []string) {
 		return []string{}
 	}
 	return packHosts(regHosts)
-}
-
-func regularizeHosts(hosts []string) []string {
-	if hosts == nil {
-		return nil
-	}
-	uniqHosts := make(map[string]bool)
-	for _, host := range hosts {
-		noCmtHosts := reComent.ReplaceAllString(host, "")
-		for _, h := range reSpaces.Split(noCmtHosts, -1) {
-			if h != "" {
-				uniqHosts[h] = true
-			}
-		}
-
-	}
-	result := make([]string, len(uniqHosts))
-	var i = 0
-	for host := range uniqHosts {
-		result[i] = host
-		i++
-	}
-	return result
 }
 
 func packHosts(uniqHosts []string) []string {

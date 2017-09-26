@@ -6,6 +6,43 @@
 
 A golang library for packing and unpacking hosts list
 
+## Install
+
+```bash
+go get github.com/Wing924/hostutils
+```
+
+## Examples
+
+```go
+package main
+
+import (
+    "fmt"
+
+    "github.com/Wing924/hostutils"
+)
+
+func main() {
+  // Pack
+  pack1 := hostutils.Pack([]string{"example101z.com", "example102z.com", "example103z.com"})
+  fmt.Println(pack1) // [example[101-103]z.com]
+
+  pack2 := hostutils.Pack([]string{"example101z.com", "example102z.com", "example201z.com"})
+  fmt.Println(pack2) // [example[101-102,201]z.com]
+
+  pack3 := hostutils.Pack([]string{"example01z.com example02z.com"})
+  fmt.Println(pack3) // [example[01-02]z.com]
+
+  // Unpack
+  unpack1 := hostutils.Unpack([]string{"example[101-103]z.com"})
+  fmt.Println(unpack1) // [example101z.com example102z.com example103z.com]
+
+  unpack1 := hostutils.Unpack([]string{"example[1-2][101-102]z.com"})
+  fmt.Println(unpack1) // [example101z.com example102z.com example201z.com example201z.com]
+}
+```
+
 ## Functions
 
 ```

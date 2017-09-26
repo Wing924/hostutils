@@ -46,6 +46,14 @@ func TestUnpack(t *testing.T) {
 			"example102c.com",
 			"example103c.com",
 		})
+	testUnpack(t,
+		[]string{"example[1-2][01-02]c.com"},
+		[]string{
+			"example101c.com",
+			"example102c.com",
+			"example201c.com",
+			"example202c.com",
+		})
 	testUnpack(t, []string{"www.example.com"}, []string{"www.example.com"})
 	testUnpack(t,
 		[]string{"example[101-105]c.com"},

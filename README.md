@@ -40,8 +40,8 @@ func main() {
   unpack1 := hostutils.Unpack([]string{"example[101-103]z.com"})
   fmt.Println(unpack1) // [example101z.com example102z.com example103z.com]
 
-  unpack1 := hostutils.Unpack([]string{"example[1-2][101-102]z.com"})
-  fmt.Println(unpack1) // [example101z.com example102z.com example201z.com example201z.com]
+  unpack2 := hostutils.Unpack([]string{"example[1-2][101-102]z.com"})
+  fmt.Println(unpack2) // [example1101z.com example1102z.com example2101z.com example2102z.com]
 }
 ```
 

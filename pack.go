@@ -26,15 +26,16 @@ func Pack(hosts []string) (packedHosts []string) {
 func packHosts(uniqHosts []string) []string {
 	hostGroups := make(map[string][]string)
 	var result []string
-	for _, host := range uniqHosts {
-		m := reHostname.FindStringSubmatch(host)
+	for _, fqdn := range uniqHosts {
+		hostname, domain := parseFQDN(fqdn)
+		m := reHostname.FindStringSubmatch(hostname)
 		if len(m) == 0 {
-			result = append(result, host)
+			result = append(result, fqdn)
 		} else {
 			prefix := m[1]
 			num := m[2]
 			suffix := m[3]
-			key := fmt.Sprintf("%s%%s%s", prefix, suffix)
+			key := fmt.Sprintf("%s%%s%s%s", prefix, suffix, domain)
 			hostGroups[key] = append(hostGroups[key], num)
 		}
 	}

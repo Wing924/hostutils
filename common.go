@@ -3,6 +3,7 @@ package hostutils
 import (
 	"regexp"
 	"strconv"
+	"strings"
 )
 
 var reComent = regexp.MustCompile(`#.*`)
@@ -47,4 +48,12 @@ func regularizeHosts(hosts []string) []string {
 		i++
 	}
 	return result
+}
+
+func parseFQDN(fqdn string) (hostname, domain string) {
+	tokens := strings.SplitN(fqdn, ".", 2)
+	if len(tokens) == 2 {
+		return tokens[0], "." + tokens[1]
+	}
+	return fqdn, ""
 }

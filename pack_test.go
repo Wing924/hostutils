@@ -94,6 +94,18 @@ func TestPack(t *testing.T) {
 			"example102c.com",
 			"example0003c.com",
 		})
+	testPack(t,
+		[]string{"example[101-102]c.grp1.com"},
+		[]string{
+			"example101c.grp1.com",
+			"example102c.grp1.com",
+		})
+	testPack(t,
+		[]string{"example[101-102]"},
+		[]string{
+			"example101",
+			"example102",
+		})
 }
 
 func TestPackString(t *testing.T) {
@@ -124,9 +136,11 @@ func TestPackString(t *testing.T) {
 }
 
 func testPack(t *testing.T, expected []string, input []string) {
+	t.Helper()
 	assert.Equal(t, expected, Pack(input))
 }
 
 func testPackString(t *testing.T, expected []string, input string) {
+	t.Helper()
 	assert.Equal(t, expected, PackString(input))
 }

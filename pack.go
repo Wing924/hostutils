@@ -6,12 +6,12 @@ import (
 	"strings"
 )
 
-// PackString Pack space septated full hosts list into short abbreviated hosts.
+// PackString Pack space separated full hosts list into short abbreviated hosts.
 func PackString(hosts string) (packedHosts []string) {
 	return Pack([]string{hosts})
 }
 
-// Pack Pack full hosts list into short abbreviated hosts.
+// Pack full hosts list into short abbreviated hosts.
 func Pack(hosts []string) (packedHosts []string) {
 	regHosts := regularizeHosts(hosts[:])
 	if regHosts == nil {

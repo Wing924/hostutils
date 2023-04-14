@@ -11,7 +11,7 @@ A golang library for packing and unpacking hosts list
 ## Install
 
 ```bash
-go get github.com/Wing924/hostutils
+go get github.com/Wing924/hostutils/v2
 ```
 
 ## Examples
@@ -22,7 +22,7 @@ package main
 import (
     "fmt"
 
-    "github.com/Wing924/hostutils"
+    "github.com/Wing924/hostutils/v2"
 )
 
 func main() {

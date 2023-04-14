@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.0.0 (2023-04-14)
+
+* Support Go 1.20.
+* Rewrite `Pack` algorithm
+
 ## 1.1.0 (2022-01-24)
 
 * Support Go 1.17.

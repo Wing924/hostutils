@@ -1,9 +1,9 @@
 # hostutils
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Go Report Card](https://goreportcard.com/badge/github.com/Wing924/hostutils)](https://goreportcard.com/report/github.com/Wing924/hostutils)
+[![Go Report Card](https://goreportcard.com/badge/github.com/Wing924/hostutils/v2)](https://goreportcard.com/report/github.com/Wing924/hostutils/v2)
 [![codecov](https://codecov.io/gh/Wing924/hostutils/branch/master/graph/badge.svg)](https://codecov.io/gh/Wing924/hostutils)
-[![GoDoc](https://godoc.org/github.com/Wing924/hostutils?status.svg)](https://godoc.org/github.com/Wing924/hostutils)
+[![GoDoc](https://godoc.org/github.com/Wing924/hostutils/v2?status.svg)](https://pkg.go.dev/github.com/Wing924/hostutils/v2)
 
 A golang library for packing and unpacking hosts list
 

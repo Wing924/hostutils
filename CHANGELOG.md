@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.1 (2023-04-18)
+
+* Fix slice access out of bound error
+
 ## 2.0.0 (2023-04-14)
 
 * Support Go 1.20.

@@ -241,7 +241,7 @@ func (h *host) Less(rhs *host) bool {
 	}
 
 	m = min(len(h.Digits), len(rhs.Digits))
-	for i := 0; i < m; i++ {
+	for i := m - 1; i >= 0; i-- {
 		if h.Digits[i].Digit < rhs.Digits[i].Digit {
 			return true
 		}

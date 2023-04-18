@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.2 (2023-04-18)
+
+* Fix a bug on sorting, which cause `Pack` don't work as expected
+
 ## 2.0.1 (2023-04-18)
 
 * Fix slice access out of bound error

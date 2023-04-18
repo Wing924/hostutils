@@ -21,6 +21,27 @@ func TestPack(t *testing.T) {
 		{[]string{"abc101z-02", "abc102z-02", "abc102z-03"}, []string{"abc[101-102]z-02", "abc102z-03"}},
 		{[]string{"abc101z-01", "abc102z-02", "abc102z-03"}, []string{"abc101z-01", "abc102z-[02-03]"}},
 		{[]string{"abc101z-01p", "abc101z-01q", "abc102z-01p", "abc102z-01q"}, []string{"abc[101-102]z-01p", "abc[101-102]z-01q"}},
+		{[]string{
+			"abc101z-01p",
+			"abc101z-01q",
+			"abc102z-01p",
+			"abc102z-01q",
+			"abc101z-02p",
+			"abc101z-02q",
+			"abc102z-02p",
+			"abc102z-02q",
+			"abc101z-03p",
+			"abc101z-04p",
+			"abc102z-03q",
+			"abc102z-04q",
+		}, []string{
+			"abc[101-102]z-01p",
+			"abc[101-102]z-02p",
+			"abc101z-[03-04]p",
+			"abc[101-102]z-01q",
+			"abc[101-102]z-02q",
+			"abc102z-[03-04]q",
+		}},
 	}
 	for _, test := range cases {
 		test := test

@@ -224,13 +224,24 @@ func (h *host) appendToken(token string, digitMode bool) {
 }
 
 func (h *host) Less(rhs *host) bool {
-	for i := range h.NonDigits {
+	m := min(len(h.NonDigits), len(rhs.NonDigits))
+	for i := 0; i < m; i++ {
 		if h.NonDigits[i] < rhs.NonDigits[i] {
 			return true
 		}
 		if h.NonDigits[i] > rhs.NonDigits[i] {
 			return false
 		}
+	}
+	if len(h.NonDigits) < len(rhs.NonDigits) {
+		return true
+	}
+	if len(h.NonDigits) > len(rhs.NonDigits) {
+		return false
+	}
+
+	m = min(len(h.Digits), len(rhs.Digits))
+	for i := 0; i < m; i++ {
 		if h.Digits[i].Digit < rhs.Digits[i].Digit {
 			return true
 		}
@@ -243,6 +254,9 @@ func (h *host) Less(rhs *host) bool {
 		if h.Digits[i].Value > rhs.Digits[i].Value {
 			return false
 		}
+	}
+	if len(h.Digits) < len(rhs.Digits) {
+		return true
 	}
 	return false
 }

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.3 (2024-06-05)
+
+* Bump up `golang.org/x/exp` to `v0.0.0-20240604190554-fc45aab8b7f8`
+
 ## 2.0.2 (2023-04-18)
 
 * Fix a bug on sorting, which cause `Pack` don't work as expected

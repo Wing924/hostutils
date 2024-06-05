@@ -3,7 +3,7 @@ package hostutils
 import (
 	"bytes"
 	"fmt"
-	"golang.org/x/exp/slices"
+	"slices"
 	"strconv"
 )
 
@@ -47,8 +47,8 @@ func Pack(hosts []string) []string {
 	for _, host := range regHosts {
 		uniqHosts = append(uniqHosts, parseHost(host))
 	}
-	slices.SortFunc(uniqHosts, func(a, b *host) bool {
-		return a.Less(b)
+	slices.SortFunc(uniqHosts, func(a, b *host) int {
+		return a.CompareTo(b)
 	})
 
 	result := make([]string, 0, len(uniqHosts))
@@ -224,41 +224,42 @@ func (h *host) appendToken(token string, digitMode bool) {
 }
 
 func (h *host) Less(rhs *host) bool {
+	return h.CompareTo(rhs) < 0
+}
+
+func (h *host) CompareTo(rhs *host) int {
 	m := min(len(h.NonDigits), len(rhs.NonDigits))
 	for i := 0; i < m; i++ {
 		if h.NonDigits[i] < rhs.NonDigits[i] {
-			return true
+			return -1
 		}
 		if h.NonDigits[i] > rhs.NonDigits[i] {
-			return false
+			return 1
 		}
 	}
 	if len(h.NonDigits) < len(rhs.NonDigits) {
-		return true
+		return -1
 	}
 	if len(h.NonDigits) > len(rhs.NonDigits) {
-		return false
+		return 1
 	}
 
 	m = min(len(h.Digits), len(rhs.Digits))
 	for i := m - 1; i >= 0; i-- {
 		if h.Digits[i].Digit < rhs.Digits[i].Digit {
-			return true
+			return -1
 		}
 		if h.Digits[i].Digit > rhs.Digits[i].Digit {
-			return false
+			return 1
 		}
 		if h.Digits[i].Value < rhs.Digits[i].Value {
-			return true
+			return -1
 		}
 		if h.Digits[i].Value > rhs.Digits[i].Value {
-			return false
+			return 1
 		}
 	}
-	if len(h.Digits) < len(rhs.Digits) {
-		return true
-	}
-	return false
+	return len(h.Digits) - len(rhs.Digits)
 }
 
 func isDigit(c rune) bool {
